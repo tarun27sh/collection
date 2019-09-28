@@ -16,7 +16,7 @@ class Solution:
     def bt(self, words, curr_ans):
         #print('words = {},    curr_ans = {}'.format(words, curr_ans))
         if curr_ans and len(curr_ans) == len(curr_ans[0]):
-            if self.checkValid(curr_ans):
+            if self._checkValid(curr_ans):
                 #print('Found one solution {}'.format(curr_ans))
                 self.all_ans.append(curr_ans)
                 #if curr_ans not in all_ans:
@@ -27,21 +27,21 @@ class Solution:
             self.bt(words[:i] + words[i+1:], curr_ans + [words[i]])
         return
         
-    def checkValid(self, w):
+    def _checkValid(self, w):
         # A sequence of words forms a valid word square if the kth row 
         # and column read the exact same string, 
         # where 0 ≤ k < max(numRows, numColumns).
         #print('#####')
         for i in range(len(w)):
-            if w[i] != self.get_col(w, i):
-                #print('False: i={} r-{}, c-{}'.format(i, w[i], self.get_col(w, i)))
+            if w[i] != self._get_col(w, i):
+                #print('False: i={} r-{}, c-{}'.format(i, w[i], self._get_col(w, i)))
                 return False
         #print('True: ans={}'.format(w))
         return True
                 
                 
     
-    def get_col(self, w, col):
+    def _get_col(self, w, col):
         cols = [x[col] for x in w]
         return ''.join(cols)
 
